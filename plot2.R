@@ -14,7 +14,7 @@ data200702 <- mutate(data200702, Date_Time=paste(Date,Time))
 Sys.setlocale("LC_TIME","en_US.UTF-8")
 data200702$Date_Time <- strptime(data200702$Date_Time,format="%d/%m/%Y %H:%M:%S",tz="UTC")
 
-# Plot 2
+# Plot 2, the Date_Time must be in POSIXct format so the at=c(...) in the axis(...) code can work
 png("plot2.png",width=480,height=480)
 plot(data200702$Date_Time,data200702$Global_active_power,type="l",xlab="",ylab="Global Active Power (kilowatts)",xaxt="n")
 axis(side=1,at=c(data200702$Date_Time[1],data200702$Date_Time[1441],strptime("3/2/2007 00:00:00",format="%d/%m/%Y %H:%M:%S",tz="UTC")),labels=c(format(as.Date("2007-02-01"),"%a"),format(as.Date("2007-02-02"),"%a"),format(as.Date("2007-02-03"),"%a")))
